@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.get("http://agl-developer-test.azurewebsites.net/people.json", function (data, status) {
         if (status === 'success') {
-            $('#content').text(JSON.stringify(categorizeData(data)));
+            $('#content').html(createHtml(categorizeData(data)));
         } else {
             $('#content').text('Oops, something went wrong.')
         }
@@ -29,5 +29,13 @@ function categorizeData(data) {
 }
 
 function createHtml(data) {
-
+    var html = '';
+    _.forEach(data, function (value, key) {
+        html += '<h2>'+key+'</h2><ul>';
+        _.forEach(value, function (cat, key) {
+            html += '<li>'+cat+'</li>';            
+        });
+        html += '</ul>'
+    });
+    return html;
 }
