@@ -12,7 +12,7 @@ function categorizeData(data) {
     if (data === undefined) return;
 
     var reducedData = _.reduce(data, function (result, owner) {
-        var petCats = _.filter(owner.pets, 'type', 'Cats');
+        var petCats = _.filter(owner.pets, { 'type': 'Cat' });
         _.forEach(petCats, function (value) {
             if (!result[owner.gender]) {
                 result[owner.gender] = [];
